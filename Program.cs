@@ -59,6 +59,7 @@ namespace SendingRequest
             Console.WriteLine("/// 'change method'       - Change Method                         ///");
             Console.WriteLine("/// 'add header'          - Add Header                            ///");
             Console.WriteLine("/// 'remove header'       - Remove Header with key                ///");
+            Console.WriteLine("/// 'clear header'        - Clear Header                          ///");
             Console.WriteLine("/// 'info'                - Show current request information      ///");
             Console.WriteLine("/// 'send request'        - Send Request                          ///");
             Console.WriteLine("/// 'cls' - Clear Console    'ctrl + c' or 'exit' - exit program  ///");
@@ -70,6 +71,8 @@ namespace SendingRequest
             Console.WriteLine(req);
             //Console.WriteLine(req.Properties);
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
 
         static void change_target_url()
         {
@@ -84,8 +87,6 @@ namespace SendingRequest
                 Console.WriteLine(ex.Message);
             }
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
 
         static void add_header()
         {
@@ -119,6 +120,11 @@ namespace SendingRequest
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        static void clear_header()
+        {
+            req.Headers.Clear();
         }
 
         static void change_method()
@@ -183,6 +189,9 @@ namespace SendingRequest
                     case "remove header":
                         remove_header();
                         break;
+                    case "clear header":
+                        clear_header();
+                        break;
                     case "info":
                         show_request_info();
                         break;
@@ -206,7 +215,8 @@ namespace SendingRequest
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        static async void send_request()
+        static //async 
+        void send_request()
         {
             try
             {
