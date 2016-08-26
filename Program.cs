@@ -68,13 +68,14 @@ namespace SendingRequest
         static void show_request_info()
         {
             Console.WriteLine(req);
+            //Console.WriteLine(req.Properties);
         }
 
         static void change_target_url()
         {
             try
             {
-                Console.WriteLine("Input URL : ");
+                Console.WriteLine("\nInput URL : ");
                 string url = Console.ReadLine();
                 req.RequestUri = new Uri(url);
             }
@@ -90,10 +91,10 @@ namespace SendingRequest
         {
             try
             {
-                Console.WriteLine("Adding header");
+                Console.WriteLine("\nAdding header");
                 Console.WriteLine("Input header - key");
                 string key = Console.ReadLine();
-                Console.WriteLine("Input value correspond to {0} ", key);
+                Console.WriteLine("\nInput value correspond to {0} ", key);
                 string value = Console.ReadLine();
 
                 req.Headers.Add(key, value);
@@ -108,7 +109,7 @@ namespace SendingRequest
         {
             try
             {
-                Console.WriteLine("Removing header");
+                Console.WriteLine("\nRemoving header");
                 Console.WriteLine("Input header - key");
                 string key = Console.ReadLine();
 
