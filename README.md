@@ -7,3 +7,5 @@ If you encounter any bug or for any reason you want to contact author , please c
 
 # How to start the program
 http://lmgtfy.com/?q=execute+c%23+from+command+line
+
+Update : Just execute the exe file , if you want to see the source code , it's in the .cs file :)
