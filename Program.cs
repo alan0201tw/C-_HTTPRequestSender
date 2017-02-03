@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
-using System.Threading;
-using System.Net.Http.Headers;
 
 namespace SendingRequest
 {
@@ -61,7 +56,7 @@ namespace SendingRequest
             Console.WriteLine("/// 'remove header'       - Remove Header with key                ///");
             Console.WriteLine("/// 'clear header'        - Clear Header                          ///");
             Console.WriteLine("/// 'info'                - Show current request information      ///");
-            Console.WriteLine("/// 'send request'        - Send Request                          ///");
+            Console.WriteLine("/// 'send request <-d>'   - Send Request (add -d for whole body)  ///");
             Console.WriteLine("/// 'cls' - Clear Console    'ctrl + c' or 'exit' - exit program  ///");
             Console.WriteLine("/////////////////////////////////////////////////////////////////////");
         }
@@ -196,7 +191,10 @@ namespace SendingRequest
                         show_request_info();
                         break;
                     case "send request":
-                        send_request();
+                        send_request(false);
+                        break;
+                    case "send request -d":
+                        send_request(true);
                         break;
                     case "cls":
                         Console.Clear();
@@ -216,7 +214,7 @@ namespace SendingRequest
         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
         static //async 
-        void send_request()
+        void send_request(bool detail)
         {
             try
             {
@@ -228,9 +226,10 @@ namespace SendingRequest
                 //use sync method
                 var result = client.SendAsync(tmp_req).Result;
                 string resultContent = result.Content.ReadAsStringAsync().Result;
-                //Console.WriteLine(result);
-                //Console.WriteLine("-------------------------");
-                Console.WriteLine(resultContent);
+                Console.WriteLine(result);
+                Console.WriteLine("-------------------------");
+                if (detail)
+                    Console.WriteLine(resultContent);
             }
             catch (Exception ex)
             {
